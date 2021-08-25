@@ -17,8 +17,8 @@
                 All
             </x-dropdown-item>
             @foreach ($categories as $category)
-                <x-dropdown-item href="/category/{{ $category->slug }}"
-                    :active='request()->is("category/$category->slug")'>
+                <x-dropdown-item href="/posts?category={{ $category->slug }}"
+                    :active='request()->is("/posts?category=$category->slug")'>
                     {{ ucwords($category->name) }}
                 </x-dropdown-item>
             @endforeach
