@@ -33,9 +33,9 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 //     ]);
 // });
 
-Route::get('/author/{author:username}', function (User $author) {
-    return view('posts', [
-        'posts' => $author->posts->load(['category', 'author']),
-        'categories' => Category::all()
-    ]);
-});
+// Refactored to Query Scope
+// Route::get('/authors/{author:username}', function (User $author) {
+//     return view('posts.index', [
+//         'posts' => $author->posts->load(['category', 'author'])
+//     ]);
+// });
