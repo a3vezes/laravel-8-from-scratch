@@ -6,6 +6,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
 
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .clamp {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .clamp.one-line {
+        -webkit-line-clamp: 1;
+    }
+
+</style>
+
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
@@ -30,7 +47,8 @@
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log in</a>
                 @endauth
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="#newsletter"
+                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -46,22 +64,25 @@
             <div class="mt-10">
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                    <form method="POST" action="#" class="lg:flex text-sm">
+                    <form method="POST" action="/newsletter" class="lg:flex text-sm">
+                        @csrf
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email" class="hidden lg:inline-block">
                                 <img src="/images/mailbox-icon.svg" alt="mailbox letter">
                             </label>
 
-                            <input id="email" type="text" placeholder="Your email address"
+                            <input id="email" name="email" type="text" placeholder="Your email address"
                                 class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                         </div>
-
-                        <button type="submit"
+                        <button type="submit" id="newsletter"
                             class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
                             Subscribe
                         </button>
                     </form>
                 </div>
+                @error('email')
+                    <p class="text-red-500 text-xs mt-2 font-bold">{{ $message }}</p>
+                @enderror
             </div>
         </footer>
     </section>
