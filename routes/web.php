@@ -49,6 +49,9 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
+Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
+
 // Refactored to Query Scope
 // Route::get('/category/{category:slug}', function (Category $category) {
 //     return view('posts', [
