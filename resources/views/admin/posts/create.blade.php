@@ -25,8 +25,5 @@
 
             <x-form.button>Publish</x-form.button>
         </form>
-        @if ($errors->any())
-            {!! implode('', $errors->all('<div>:message</div>')) !!}
-        @endif
     </x-setting>
 </x-layout>
