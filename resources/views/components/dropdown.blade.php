@@ -1,6 +1,6 @@
 <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
 
-    <div x-data="{ show: false }" @click.away="show = false">
+    <div x-data="{ show: false }" @click.away="show = false" class="relative">
         <div @click="show = ! show">
             {{ $trigger }}
         </div>

@@ -7,6 +7,9 @@ use App\Services\MailchimpNewsletter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use MailchimpMarketing\ApiClient;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +40,13 @@ class AppServiceProvider extends ServiceProvider
         // Disable all mass assignable restrictions.
         // Never use Model::create(request()->all())
         Model::unguard();
+
+        Gate::define('admin', function (User $user) {
+            return $user->username === 'a3vezes';
+        });
+
+        Blade::if('admin', function () {
+            return request()->user()?->can('admin');
+        });
     }
 }
